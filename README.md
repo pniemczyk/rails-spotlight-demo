@@ -1,24 +1,36 @@
-# README
+# How to start with Rails Spotlight
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* [Gem repository](https://github.com/pniemczyk/rails_spotlight)
+* [Chrome extension](https://chrome.google.com/webstore/detail/rails-spotlight/kfacifkandemkdemkliponofajohhnbp?hl=en-US)
 
-Things you may want to cover:
 
-* Ruby version
+## Installation and Configuration steps
 
-* System dependencies
+[check video](https://youtu.be/8QDNHL0PTZg)
 
-* Configuration
+1. **Add the Gem to the Rails App**
 
-* Database creation
+•  “First, we will add the Rails Spotlight gem to your Rails application by updating the Gemfile.”
 
-* Database initialization
+**Bash command** 
+```bash 
+bundle add rails_spotlight --group development
+```
+or manual Gemfile modification
 
-* How to run the test suite
+** Gemfile lines**
+```ruby
+group :development do
+  gem 'rails_spotlight'
+end
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+2. **Configure the Gem**
 
-* Deployment instructions
+* Generate env template `rails rails_spotlight:generate_config`
+* ENV variable settings
+* Explain `RailsSpotlight.config`
+* Inject JS partial for Frontend (CSP workaround) `rails rails_spotlight:inject_js_partial`
 
-* ...
+3. **Install Chrome extension**
+4. **Configure extension**
