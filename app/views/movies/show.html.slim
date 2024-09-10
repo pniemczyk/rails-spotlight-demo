@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+== render @movie
+
+div
+  - if user_signed_in?
+    => link_to "Edit this movie", edit_movie_path(@movie)
+    '|
+  =< link_to "Back to movies", movies_path
+  - if user_signed_in?
+    = button_to "Destroy this movie", @movie, method: :delete

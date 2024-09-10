@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+== render @rating
+
+div
+  - if user_signed_in?
+    => link_to "Edit this rating", edit_rating_path(@rating)
+    '|
+  =< link_to "Back to ratings", ratings_path
+  - if user_signed_in?
+    = button_to "Destroy this rating", @rating, method: :delete

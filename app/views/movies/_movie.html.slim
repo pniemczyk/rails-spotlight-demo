@@ -1,0 +1,15 @@
+div id="#{dom_id movie}"
+  p
+    strong Title:
+    =< movie.title
+  p
+    strong Description:
+    =< movie.description
+  p
+    strong User:
+    =< movie.user.email
+  p
+    strong Actors:
+    ul
+      - movie.actors.each do |actor|
+        li = actor.name

@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+== render @actor
+
+div
+  - if user_signed_in?
+    => link_to "Edit this actor", edit_actor_path(@actor)
+    '|
+  =< link_to "Back to actors", actors_path
+  - if user_signed_in?
+    = button_to "Destroy this actor", @actor, method: :delete

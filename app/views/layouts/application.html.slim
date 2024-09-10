@@ -1,0 +1,75 @@
+doctype html
+html
+  head
+    title
+      | RailsSpotlightDemo
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_importmap_tags
+  body
+    #wrapper
+      #sidebar
+        h2 Menu
+
+        ul
+          li = link_to 'Dashboard', root_path
+          li = link_to 'Movies', movies_path
+          li = link_to 'Actors', actors_path
+          li = link_to 'Ratings', ratings_path
+          br
+          - if user_signed_in?
+            li = link_to 'Logout', destroy_user_session_path, data: { turbo_method: :delete }
+            br
+            li Dev tools
+            li = link_to 'Sidekiq', '/rails/sidekiq', target: '_blank'
+          - else
+            li = link_to 'Sign in', new_user_session_path
+
+      #main-content
+        - if notice
+          p.notice = notice
+        - if alert
+          p.alert = alert
+        = yield
+
+    - if Rails.env.development?
+      = render 'layouts/rails_spotlight_extension_js'
+
+    style
+      | #wrapper {
+      |   display: flex;
+      | }
+      | #sidebar {
+      |   width: 250px;
+      |   background-color: #f0f0f0;
+      |   padding: 15px;
+      | }
+      | #main-content {
+      |   flex: 1;
+      |   padding: 15px;
+      | }
+      | #sidebar ul {
+      |   list-style-type: none;
+      |   padding: 0;
+      | }
+      | #sidebar ul li {
+      |   margin-bottom: 10px;
+      | }
+      | .notice {
+      |   background-color: #dff0d8;
+      |   color: #3c763d;
+      |   border: 1px solid #d6e9c6;
+      |   padding: 10px;
+      |   margin-bottom: 20px;
+      |   border-radius: 5px;
+      | }
+      | .alert {
+      |   background-color: #f2dede;
+      |   color: #a94442;
+      |   border: 1px solid #ebccd1;
+      |   padding: 10px;
+      |   margin-bottom: 20px;
+      |   border-radius: 5px;
+      | }

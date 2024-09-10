@@ -1,0 +1,10 @@
+h1 Home
+- if user_signed_in?
+  p = "Welcome, #{current_user.email}"
+h3 Rails Spotlight links
+ul
+  li = link_to 'Home page', 'https://railspotlight.eu/', target: '_blank'
+  li = link_to 'Gem repository', 'https://github.com/pniemczyk/rails_spotlight', target: '_blank'
+  li = link_to 'Chrome extension', 'https://chromewebstore.google.com/detail/rails-spotlight/kfacifkandemkdemkliponofajohhnbp?hl=en-US', target: '_blank'
+  li = link_to 'YouTube Channel', 'https://www.youtube.com/@RailsSpotlight-kf9ns/videos', target: '_blank'
+
