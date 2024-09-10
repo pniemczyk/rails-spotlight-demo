@@ -1,0 +1,28 @@
+= form_with(model: movie) do |form|
+  - if movie.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(movie.errors.count, "error")} prohibited this movie from being saved:"
+      ul
+        - movie.errors.each do |error|
+          li = error.full_message
+
+  div
+    = form.label :title, style: "display: block"
+    = form.text_field :title
+
+  div
+    = form.label :description, style: "display: block"
+    = form.text_area :description
+
+  div
+    = form.label :actors
+    br
+    = form.collection_select :actor_ids, Actor.all, :id, :name, {}, { multiple: true, class: "actor-select" }
+
+  div
+    = form.submit
+
+  style
+    | .actor-select {
+    |   width: 200px;
+    | }

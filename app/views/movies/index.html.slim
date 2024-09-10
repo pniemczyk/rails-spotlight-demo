@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Movies
+
+#movies
+  - @movies.each do |movie|
+    == render movie
+    p
+      = link_to "Show this movie", movie
+- if user_signed_in?
+  = link_to "New movie", new_movie_path
