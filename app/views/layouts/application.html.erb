@@ -11,5 +11,8 @@
 
   <body>
     <%= yield %>
+    <% if Rails.env.development? %>
+      <%= render 'layouts/rails_spotlight_extension_js' %>
+    <% end %>
   </body>
 </html>

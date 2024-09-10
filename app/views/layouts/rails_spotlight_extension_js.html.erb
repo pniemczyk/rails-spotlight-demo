@@ -1,0 +1,28 @@
+<script>
+  try {
+    function executeScriptFromMessage(msg) {
+      if (msg.token === "<%=::RailsSpotlight.config.form_js_execution_token%>") {
+        try {
+          const func = new Function(msg.code);
+          func();
+          return {status: 'Executed'};
+        } catch (e) {
+          return {status: 'Error', error: e};
+        }
+      } else {
+        return {status: 'Error', error: 'Invalid token provided, script execution aborted.'};
+      }
+    }
+
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'RAILS_SPOTLIGHT_EXTENSION_JS_EXECUTION') {
+        var result = executeScriptFromMessage(event.data);
+        if (event.data.debug) {
+          console.log('Script execution result:', result);
+        }
+      }
+    });
+  } catch (e) {
+    console.error('Error initializing the RAILS_SPOTLIGHT_EXTENSION_JS_EXECUTION script listener:', e);
+  }
+</script>

@@ -60,3 +60,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "rails_spotlight", "~> 0.3.8", :group => :development
